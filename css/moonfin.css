@@ -1,0 +1,118 @@
+/* =====================================================================
+   moonfin.css  -  Moonfin-style look for StremioK (Tizen 3 / Chromium 47)
+   Load AFTER css/style.css:
+       <link rel="stylesheet" href="css/moonfin.css">
+   Chromium 47 rules: flexbox ok, NO var(), NO grid, NO gap.
+   Animate only transform + opacity (no blur shadows: slow on old TVs).
+
+   PALETTE (find/replace to retheme)
+     accent      #00a4dc     accent text   #04141c
+     background  #0a0c10     panel         #151a23
+     muted text  #8d95a6
+   ===================================================================== */
+
+html, body { background: #0a0c10; }
+
+/* ---------- Top menu: clean pills, accent fill on focus ---------- */
+.header { height: 100px; padding-top: 28px; }
+.brand { color: #00a4dc; }
+.header .hchip, .tab-pill {
+  background: transparent; color: #8d95a6;
+  font-size: 24px; padding: 9px 14px; margin-right: 6px;
+  border: 3px solid transparent;
+}
+.tab-pill.active, .home-header .hchip.active {
+  background: rgba(255,255,255,0.12); color: #fff;
+}
+.header .hchip.focusable.focused,
+.tab-pill.focusable.focused {
+  background: #fff; color: #0a0c10; border-color: #fff;
+}
+
+/* ---------- Home: details strip becomes a big "hero" area ----------
+   The strip already shows the focused title. Make it taller, bigger type,
+   with a fade so it reads like a banner. Rows move down to match.
+   (Discover keeps its own sizes: its #screen-discover rules are stronger.) */
+.home-info {
+  top: 104px; left: 0; right: 0; height: 270px;
+  padding: 26px 60px 0 60px; border-left: 0; border-radius: 0;
+}
+.home-info.on {
+  background: linear-gradient(90deg, rgba(10,12,16,0.92) 0%, rgba(10,12,16,0.55) 60%, rgba(10,12,16,0) 100%);
+  border-left-color: transparent;
+}
+.home-info-title { font-size: 56px; line-height: 64px; height: 64px; }
+.home-info-logo { max-height: 64px; max-width: 640px; }
+.home-info-meta { font-size: 24px; line-height: 30px; margin: 8px 0 12px; color: #aab1c0; }
+.home-info-desc { font-size: 24px; line-height: 34px; max-height: 102px; max-width: 1100px; color: #d6dae3; }
+.home-info + .rows { top: 380px; }
+
+/* ---------- Rows ---------- */
+.row-title { font-size: 30px; color: #f2f4f8; margin-left: 60px; }
+.row-scroller { padding-top: 30px; padding-bottom: 30px; }
+
+/* ---------- Cards: rounded, soft, strong focus ---------- */
+.card { border-radius: 14px; background: #151a23; border: 0; }
+.card .cap { padding-top: 34px; font-size: 19px; }
+.card .prog { height: 7px; background: #00a4dc; }
+.card .card-rating { background: rgba(0,0,0,0.78); }
+.card .card-watched { background: #00a4dc; }
+.card .card-new { background: #00a4dc; }
+
+/* focus: white ring + lift (same trick Moonfin uses) */
+.card.focusable.focused {
+  border: 0;
+  box-shadow: 0 0 0 5px #fff;
+  transform: scale(1.12);
+  -webkit-transform: scale(1.12);
+}
+.card.focusable.moving {
+  border: 0;
+  box-shadow: 0 0 0 5px #00a4dc;
+}
+.card .poster, .card { -webkit-transition: -webkit-transform .15s; transition: transform .15s; }
+
+/* ---------- Generic focus (buttons, lists, settings) ---------- */
+.focusable.focused { border-color: #fff; box-shadow: none; }
+.pill { background: rgba(255,255,255,0.10); }
+.pill.focusable.focused, .stream.focusable.focused, .ep.focusable.focused,
+.pick-item.focusable.focused, .recent-item.focusable.focused,
+.feed-btn.focusable.focused, .feed-name.focusable.focused {
+  background: #00a4dc; color: #04141c; border-color: #fff;
+}
+.ep.focusable.focused .ep-sub, .stream.focusable.focused .s-sub,
+.ep.focusable.focused .ep-ov, .ep.focusable.focused .ep-rating { color: #04141c; }
+.season-bar .pill.season-sel { background: rgba(255,255,255,0.18); color: #fff; }
+.season-bar .pill.focusable.focused { background: #00a4dc; color: #04141c; }
+
+/* ---------- Detail page: bigger, cleaner ---------- */
+.detail-title { font-size: 64px; }
+.detail-desc { font-size: 24px; max-width: 1100px; }
+.detail-hero .shade {
+  background: linear-gradient(90deg, rgba(10,12,16,0.97) 28%, rgba(10,12,16,0.25) 100%),
+              linear-gradient(0deg, #0a0c10 4%, transparent 45%);
+}
+.btn-row .pill, .series-actions .pill, .streams-actions .pill {
+  padding: 16px 38px; font-size: 25px; border-radius: 10px;
+}
+.ep, .stream { border-radius: 12px; background: rgba(21,26,35,0.78); }
+.ep-prog, .prog { background: #00a4dc; }
+
+/* ---------- Player ---------- */
+#osd-progress { background: #00a4dc; }
+#osd-scrub { box-shadow: 0 0 0 2px #00a4dc; }
+#osd-scrub-range { background: rgba(0,164,220,0.5); }
+#osd-scrub-time { border-color: #00a4dc; }
+#player-bar .pb-btn { background: rgba(21,26,35,0.92); }
+#player-bar .pb-btn.sel, #skip-prompt .skip-btn.sel, #sub-menu .sm-item.sel {
+  background: #00a4dc; color: #04141c; border-color: #fff;
+}
+#skip-prompt .skip-btn { border-color: #00a4dc; }
+
+/* ---------- Guide / misc accents ---------- */
+.guide-prog.focusable.focused { background: #00a4dc; color: #04141c; }
+.card-epg-fill, .guide-nowline { background: #00a4dc; }
+.spin { border-top-color: #00a4dc; }
+.add-input.focused, #search-input.focused, .discover-search.focused {
+  border-color: #00a4dc; box-shadow: none;
+}
