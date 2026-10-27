@@ -1209,6 +1209,8 @@
             _homeTab = avail.length ? avail[0].key : 'movie';
         }
 
+        _homeBgSrc = '';
+        s.appendChild(U.el('div', 'home-bg'));
         s.appendChild(buildTopMenu(_homeTab));
         // The focused title's details, between the top menu and the rows (#home-info).
         var info = U.el('div', 'home-info');
@@ -1284,7 +1286,27 @@
     // Details strip: updated when focus settles on a Home card (debounced, so holding a
     // direction doesn't redo it for every card passed).
     var _homeInfoTimer = null;
-    function fillHomeInfo(m) { fillInfoBox(scr('home').querySelector('.home-info'), m); }
+        var _homeBgSrc = '';
+    function fillHomeInfo(m) {
+        fillInfoBox(scr('home').querySelector('.home-info'), m);
+        setHomeBg(m);
+    }
+    function setHomeBg(m) {
+        var bg = scr('home').querySelector('.home-bg');
+        if (!bg) { return; }
+        var src = (m && typeof m.background === 'string' && /^https?:/.test(m.background)) ? m.background : '';
+        if (src === _homeBgSrc) { return; }
+        _homeBgSrc = src;
+        if (!src) { bg.className = 'home-bg'; return; }
+        var im = new Image();
+        im.onload = function () {
+            if (_homeBgSrc !== src) { return; }
+            bg.style.backgroundImage = 'url("' + src.replace(/"/g, '%22') + '")';
+            bg.className = 'home-bg on';
+        };
+        im.src = src;
+    }
+
     // Fill a details strip (Home, Discover) with a title's logo / name, facts and synopsis.
     function fillInfoBox(box, m) {
         if (!box) { return; }
