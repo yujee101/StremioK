@@ -632,7 +632,7 @@
         };
         c.__onlongpress = function () { continueActions(e, base, preview, target, c); };
         c.__cwKey = showKey(e);
-        c.__meta = { name: e.name, description: e.position
+        c.__meta = { name: e.name, background: a.background || e.background, description: e.position
             ? 'Resume at ' + U.fmtTime(e.position) + (e.duration ? '  of  ' + U.fmtTime(e.duration) : '')
             : e.upNext !== undefined ? 'Next episode' + (e.upNext ? ': “' + e.upNext + '”' : '') + '   ·   from Trakt'
             : 'Added, not started yet' };
