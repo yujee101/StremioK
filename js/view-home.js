@@ -23,7 +23,7 @@
     var HOME_TABS = [
         { key: 'continue', icon: '▶', label: 'Watching' },   // (Continue Watching: short, the menu is full)
         { key: 'calendar', icon: '📅', label: 'Calendar' },   // (coming up, and what you watched: see calendarRows)
-        { key: 'movie', icon: '🎬', label: 'Movies' },
+        { key: 'movie', icon: '🎬', label: 'Moviesss' },
         { key: 'series', icon: '📺', label: 'Series' },
         { key: 'tv', icon: '📡', label: 'IPTV' },
         { key: 'guide', icon: '☰', label: 'Guide' },   // (the IPTV channels' TV guide as a grid, once one is read: see js/view-guide.js)
