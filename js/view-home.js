@@ -30,7 +30,7 @@
         { key: 'radio', icon: '📻', label: 'Radio' },
         { key: 'sport', icon: '⚽', label: 'Sports' },
         { key: 'youtube', icon: '📹', label: 'YouTube' },   // (StremioK's YouTube catalogs, an addon's YouTube / channel ones: see isYouTubeCat)
-        { key: 'local', icon: '💾', label: 'Local' }   // (a USB drive plugged in: see LocalMedia)
+        { key: 'localUSB', icon: '💾', label: 'Local' }   // (a USB drive plugged in: see LocalMedia)
     ];
     function hasLocal() { return typeof LocalMedia !== 'undefined' && LocalMedia.present(); }
     function hasGuide() { return typeof EPG !== 'undefined' && !!EPG.hasAny && EPG.hasAny(); }
